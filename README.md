@@ -100,3 +100,15 @@ we are then get these results (notice AlwaysPreTouch and MaxHeapSize)
 	
 ### ------ ###
 ~~~
+
+## To deploy
+1. Build
+~~~
+mvn clean package shade:shade
+~~~
+2. Update the Lambda function code
+From the target folder, run the following
+~~~
+aws lambda update-function-code --function-name <<YOUR LAMBDA FUNCION NAME>> --zip-file fileb://JavaFlagsLogger-1.0.jar
+~~~
+3. Update the Lambda handler with: `JavaFlagsLogger::handleRequest`
